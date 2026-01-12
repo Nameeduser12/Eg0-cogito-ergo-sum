@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class fov
 {
     public float radius;
@@ -43,7 +44,24 @@ public class fov
         if(rangeChecks.Length != 0)
         {
             transform target = rangeChecks[0].transform;
+            //Vector3 directionToTarget (target.position).normalized;
+            
+
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+            {
+                float distanceToTarget = vector3.Distance(transform.position, tagret.position);
+
+                if(!Physics.raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                    canSeePlayer = true;
+                else
+                    canSeePlayer = false;    
+
+            }
+            else 
+                canSeePlayer = false;
 
         }
+        else if (canSeePlayer)
+               canSeePlayer = false;
     }
 }
